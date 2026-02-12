@@ -45,7 +45,7 @@ The system is divided into two main services:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/username/pos-kafka-integrated.git
+git clone https://github.com/Atherizz/pos-kafka-integrated.git
 
 ```
 
