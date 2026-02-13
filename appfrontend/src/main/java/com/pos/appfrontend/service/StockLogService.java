@@ -22,19 +22,29 @@ public class StockLogService {
     private StockLogRepository stockLogRepository;
 
     @Transactional
-    public List<StockLogReportResponse> getStockLogReport(LocalDate startDate, LocalDate endDate) {
+    public List<StockLogReportResponse> getStockLogReport(LocalDate startDate, LocalDate endDate, String logType) {
         List<StockLog> stockLogs;
 
-        if (startDate != null && endDate != null) {
+        if (startDate != null && endDate != null && logType != null) {
+            log.info("Fetching stock log report from {} to {} with log type: {}", startDate, endDate, logType);
+
+            LocalDateTime startDateTime = startDate.atStartOfDay();
+            LocalDateTime endDateTime = endDate.atTime(23, 59, 59);
+
+            stockLogs = stockLogRepository.findByCreatedAtBetweenAndLogType(startDateTime, endDateTime, logType);
+        } else if (startDate != null && endDate != null) {
             log.info("Fetching stock log report from {} to {}", startDate, endDate);
 
             LocalDateTime startDateTime = startDate.atStartOfDay();
             LocalDateTime endDateTime = endDate.atTime(23, 59, 59);
 
             stockLogs = stockLogRepository.findByCreatedAtBetween(startDateTime, endDateTime);
+        } else if (logType != null) {
+            log.info("Fetching stock log report with log type: {}", logType);
+            stockLogs = stockLogRepository.findByLogType(logType);
         } else {
             log.info("Fetching all stock log report (no date filter)");
-            stockLogs = stockLogRepository.findAll();
+            stockLogs = stockLogRepository.findAllOrderByCreatedAtDesc();
         }
 
         log.info("Found {} stock logs", stockLogs.size());

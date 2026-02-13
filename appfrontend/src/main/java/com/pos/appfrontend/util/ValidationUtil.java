@@ -39,11 +39,13 @@ public class ValidationUtil {
         return optional.get();
     }
 
-//    public void validatePasswordMatch(String password, String confirmPassword) {
-//        if (password == null || !password.equals(confirmPassword)) {
-//            log.warn("Password and Confirm Password do not match");
-//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-//                    "Passwords do not match!");
-//        }
+    public void validatePasswordMatch(String password, String confirmPassword) {
+        if (password == null || !password.equals(confirmPassword)) {
+            log.warn("Password and Confirm Password do not match");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "Passwords do not match!");
+        }
+
+    }
 
 }

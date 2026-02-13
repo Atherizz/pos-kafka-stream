@@ -15,4 +15,13 @@ public interface StockLogRepository extends JpaRepository<StockLog, Integer> {
 
     @Query("SELECT sl FROM StockLog sl WHERE sl.createdAt BETWEEN :startDateTime AND :endDateTime ORDER BY sl.createdAt DESC")
     List<StockLog> findByCreatedAtBetween(@Param("startDateTime") LocalDateTime startDateTime, @Param("endDateTime") LocalDateTime endDateTime);
+
+    @Query("SELECT sl FROM StockLog sl WHERE sl.createdAt BETWEEN :startDateTime AND :endDateTime AND sl.logType = :logType ORDER BY sl.createdAt DESC")
+    List<StockLog> findByCreatedAtBetweenAndLogType(@Param("startDateTime") LocalDateTime startDateTime, @Param("endDateTime") LocalDateTime endDateTime, @Param("logType") String logType);
+
+    @Query("SELECT sl FROM StockLog sl WHERE sl.logType = :logType ORDER BY sl.createdAt DESC")
+    List<StockLog> findByLogType(@Param("logType") String logType);
+
+    @Query("SELECT sl FROM StockLog sl ORDER BY sl.createdAt DESC")
+    List<StockLog> findAllOrderByCreatedAtDesc();
 }
