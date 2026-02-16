@@ -28,6 +28,7 @@ public class SecurityConfiguration {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/ws-status/**").permitAll()
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/scalar/**", "/v3/api-docs/**", "/api-docs-json/**").permitAll()
                         .anyRequest().authenticated()

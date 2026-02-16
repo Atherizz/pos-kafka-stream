@@ -21,6 +21,8 @@ public class TransactionEvent {
 
     private String logType;
 
+    private String userEmail;
+
     private Integer productId;
     private Integer qty;
     private BigDecimal price;
