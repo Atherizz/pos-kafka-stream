@@ -31,9 +31,9 @@ services:
     environment:
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/pos_db
-      - SPRING_DATASOURCE_USERNAME=atherizz
+      - SPRING_DATASOURCE_USERNAME=savero
       - SPRING_DATASOURCE_PASSWORD=rahasia
-      - JWT_SECRET=ganti_dengan_key_kamu_yang_panjang_dan_aman
+      - JWT_SECRET=z2C8bY9vK7mN4pQ3rT6wX1yZ0sD2fG5hJ8kL9mN4pQ3rT6wX1yZ0sD2fG5hJ8kL9
       - JAVA_OPTS=-Xmx384M -Xms256M
     depends_on:
       kafka:

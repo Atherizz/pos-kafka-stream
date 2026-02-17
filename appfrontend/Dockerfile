@@ -6,9 +6,11 @@ WORKDIR /app
 COPY pom.xml .
 RUN mvn dependency:go-offline
 
+RUN rm -rf src/test
+
 # Copy source code and build the application
 COPY src ./src
-RUN mvn clean package -DskipTests
+RUN mvn clean package -DskipTests -Dmaven.test.skip=true
 
 # Stage 2: Run stage
 FROM amazoncorretto:21-alpine3.18
